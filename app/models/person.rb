@@ -8,6 +8,7 @@ class Person < ActiveRecord::Base
 
   has_and_belongs_to_many :films, -> { ordering.includes(:genre) }
   has_many :produced_films, -> { ordering.includes(:genre) }, class_name: 'Film', foreign_key: :director_id
+  has_many :interviews
 
   scope :ordering, -> { (order(:name)) }
   scope :full, -> { includes(films: :genre, produced_films: :genre) }

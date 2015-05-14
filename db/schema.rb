@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150428130455) do
+ActiveRecord::Schema.define(version: 20150514104812) do
 
   create_table "countries", force: :cascade do |t|
     t.string   "name"
@@ -56,6 +56,17 @@ ActiveRecord::Schema.define(version: 20150428130455) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "interviews", force: :cascade do |t|
+    t.text     "text"
+    t.integer  "person_id"
+    t.integer  "film_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "interviews", ["film_id"], name: "index_interviews_on_film_id"
+  add_index "interviews", ["person_id"], name: "index_interviews_on_person_id"
+
   create_table "people", force: :cascade do |t|
     t.string   "name"
     t.string   "origin_name"
@@ -66,6 +77,12 @@ ActiveRecord::Schema.define(version: 20150428130455) do
     t.datetime "avatar_updated_at"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.text     "question"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
